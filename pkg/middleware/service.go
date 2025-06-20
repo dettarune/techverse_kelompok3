@@ -29,20 +29,12 @@ func (s *Service) JWT(next http.Handler) http.Handler {
 
 		token, err := s.jwtSvc.ParseToken(ctx, tokenStr)
 		if err != nil {
-			resp.WriteJSON(
-				w,
-				http.StatusUnauthorized,
-				map[string]any{"error": "unauthorized"},
-			)
+			resp.WriteJSON(w, http.StatusUnauthorized, map[string]any{"error": "unauthorized"})
 			return
 		}
 
 		if !token.Valid {
-			resp.WriteJSON(
-				w,
-				http.StatusUnauthorized,
-				map[string]any{"error": "unauthorized"},
-			)
+			resp.WriteJSON(w, http.StatusUnauthorized, map[string]any{"error": "unauthorized"})
 			return
 		}
 
@@ -51,11 +43,7 @@ func (s *Service) JWT(next http.Handler) http.Handler {
 
 		user, err := s.userRepo.GetByID(ctx, int64(userID))
 		if err != nil {
-			resp.WriteJSON(
-				w,
-				http.StatusUnauthorized,
-				map[string]any{"error": "unauthorized"},
-			)
+			resp.WriteJSON(w, http.StatusUnauthorized, map[string]any{"error": "unauthorized"})
 			return
 		}
 

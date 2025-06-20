@@ -16,7 +16,7 @@ type Service struct {
 func NewService(secretKey string) *Service {
 	return &Service{
 		secretKey: secretKey,
-		issuer:    "idle-addon",
+		issuer:    "todo-go",
 	}
 }
 
